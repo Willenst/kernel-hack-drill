@@ -21,6 +21,43 @@ License: GPL-3.0.
 
 Have fun!
 
+# Setup
+
+Let's go over the steps for building and installing a kernel with a module, transferring and including it to a target machine, and troubleshooting version mismatch issues.
+
+## Integrate drill in kernel sources
+
+This method is not recommended because it would then be somewhat more difficult to dynamically work with the code
+
+1. If already haven't - download the kernel sources
+2. Put the module source in a folder in the kernel tree
+3. Change the Makefile and Kconfig to include the module
+4. Enable the module as build-in (for example use menuconfig)
+5. Compile the kernel
+
+## Deploy module to the target machine
+
+For this method, you must first set up an ssh connection between your primary and target machines.
+
+1. Module needs to be compiled, for doing so it must be placed in a kernel sources tree
+* If your current kernel differs from tested one, KPATH in Makefile must be changed like that
+`KPATH := ../` (or use your path to the kernel sources)
+2. Use the folowing scp command to move compiled module to the kernel
+3. (Optional) add ssh keys to the target machine for faster authentication
+
+## Compile in a target machine
+
+1. Install necessary build tools and kernel headers
+2. Deliver hack drill via git or scp
+3. Use Makefile to compile the module
+4. use insmod to integrate the module
+
+### Handling version missmatch issues
+==(to be done)==
+
+# Usage
+==(to be done)==
+
 ## Repositories
 
  - At GitHub: <https://github.com/a13xp0p0v/kernel-hack-drill>
